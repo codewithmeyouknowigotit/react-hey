@@ -1,4 +1,4 @@
-import "./App.css";
+import "./index.css";
 import Employee from "./components/Employee";
 import { useState } from "react";
 
@@ -16,7 +16,7 @@ function App() {
     // 1. Only 1 div can be allowed here
     // 2. Logic can then be implemented in the div below
 
-    <div className="App">
+    <div className="App bg-red-300">
       {/* This is a tenary operator */}
       {showEmployees ? (
         <>
