@@ -1,20 +1,48 @@
 import "./index.css";
 import Employee from "./components/Employee";
 import { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 function App() {
-  // How to use state
+  // State
   const [role, setRole] = useState("dev");
-
-  // Logic can be added here before the return statement
-  console.log("We are about the list the employees");
+  const [employees, setEmployees] = useState([
+    {
+      name: "Caleb",
+      role: "Developer",
+      img: "https://images.pexels.com/photos/810775/pexels-photo-810775.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    },
+    {
+      name: "Michelle",
+      role: "Engineer",
+      img: "https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    },
+    {
+      name: "Adam",
+      role: "Manager",
+      img: "https://images.pexels.com/photos/1043471/pexels-photo-1043471.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    },
+    {
+      name: "Gregory",
+      role: "Intern",
+      img: "https://images.pexels.com/photos/697509/pexels-photo-697509.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    },
+    {
+      name: "Sarah",
+      role: "Web Developer",
+      img: "https://images.pexels.com/photos/1499327/pexels-photo-1499327.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    },
+    {
+      name: "Jonathan",
+      role: "Customer Success",
+      img: "https://images.pexels.com/photos/343717/pexels-photo-343717.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    },
+  ]);
   const showEmployees = true;
 
   return (
-    // 2. Logic can then be implemented in the div below
-
     <div className="App">
-      {/* This is a tenary operator */}
+      {/* Tenary operator */}
       {showEmployees ? (
         <>
           {/* <input
@@ -26,50 +54,18 @@ function App() {
             }}
           /> */}
           <div className="flex flex-wrap justify-center">
-            <Employee
-              name="Jerome"
-              role="Intern"
-              img="https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-            />
-            <Employee
-              name="Nicole"
-              role={role}
-              img="https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-            />
-            <Employee
-              name="John"
-              img="https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-            />
-
-            <Employee
-              name="Jerome"
-              role="Intern"
-              img="https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-            />
-            <Employee
-              name="Nicole"
-              role={role}
-              img="https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-            />
-            <Employee
-              name="John"
-              img="https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-            />
-
-            <Employee
-              name="Jerome"
-              role="Intern"
-              img="https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-            />
-            <Employee
-              name="Nicole"
-              role={role}
-              img="https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-            />
-            <Employee
-              name="John"
-              img="https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-            />
+            {employees.map((employee) => {
+              // console.log(uuidv4());
+              // console.log(employee);
+              return (
+                <Employee
+                  key={uuidv4()}
+                  name={employee.name}
+                  role={employee.role}
+                  img={employee.img}
+                />
+              );
+            })}
           </div>
         </>
       ) : (
