@@ -2,6 +2,7 @@ import "./index.css";
 import Employee from "./components/Employee";
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
+import AddEmployee from "./components/AddEmployee";
 
 function App() {
   // State
@@ -49,12 +50,23 @@ function App() {
     console.log("Update employee inside of app.js");
 
     const updatedEmployees = employees.map((employee) => {
-      if (id == employee.id) {
+      if (id === employee.id) {
         return { ...employee, name: newName, role: newRole };
       }
       return employee;
     });
     setEmployees(updatedEmployees);
+  }
+
+  function newEmployee(name, role, img) {
+    const newEmployee = {
+      id: uuidv4(),
+      name: name,
+      role: role,
+      img: img,
+    };
+    // The ...employees spread operator will add the new employee to the employees list
+    setEmployees([...employees, newEmployee]);
   }
 
   const showEmployees = true;
@@ -90,6 +102,8 @@ function App() {
               );
             })}
           </div>
+
+          <AddEmployee newEmployee={newEmployee} />
         </>
       ) : (
         <p>You cannot see the employees</p>
