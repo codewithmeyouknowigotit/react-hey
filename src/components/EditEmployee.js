@@ -30,7 +30,20 @@ function EditEmployee(props) {
           <Modal.Title>Update Employee</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <form id="editModal" class="w-full max-w-sm">
+          <form
+            onSubmit={(e) => {
+              handleClose();
+              // Prevents a page refresh
+              e.preventDefault();
+              console.log("Hi from edit Employee");
+              console.log(props.id, name, role);
+              // Sticking with props.id as we are not updating it and have not
+              // created a state for the id
+              props.updateEmployee(props.id, name, role);
+            }}
+            id="editModal"
+            class="w-full max-w-sm"
+          >
             <div className="md:flex md:items-center mb-6">
               <div className="md:w-1/3">
                 <label
